@@ -27,6 +27,15 @@ Enemy.prototype.update = function (dt) {
 
   this.x += this.speed * dt;
 
+  // Check for collision between player and enemies
+  if (player.x < this.x + 60 &&
+    player.x + 37 > this.x &&
+    player.y < this.y + 25 &&
+    30 + player.y > this.y) {
+    player.x = 200;
+    player.y = 799;
+}
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -66,11 +75,18 @@ Player.prototype.handleInput = function (keyPress) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemy1 = new Enemy(-80,220,50);
-var enemy2 = new Enemy(-80,137,80);
-var enemy3 = new Enemy(-80,55,50);
-var allEnemies = [enemy1, enemy2, enemy3];
+var positions = [55,137,220,220,305, 387, 470, 553, 637];
+var allEnemies = [];
+
+positions.forEach(function(pos){
+  var enemy = new Enemy(-80,pos, Math.random()*512);
+  allEnemies.push(enemy);
+})
+
+//var allEnemies = [enemy1, enemy2, enemy3];
 var player = new Player(200, 799, 50);
+
+
 
 
 // This listens for key presses and sends the keys to your
