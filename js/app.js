@@ -63,7 +63,7 @@ Player.prototype.update = function () {
     this.x = 400;
   }
   if (this.y <= -31) {
-    alert('You WON!');
+    alert('FINALLY VACATION!');
     this.reset();
   }
 };
