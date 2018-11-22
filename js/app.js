@@ -28,10 +28,11 @@ Enemy.prototype.update = function (dt) {
   this.x += this.speed * dt;
 
   // Check for collision between player and enemies
-  if (player.x < this.x + 60 &&
-    player.x + 37 > this.x &&
-    player.y < this.y + 25 &&
-    30 + player.y > this.y) {
+  if (player.x < this.x + 65 &&
+      player.x + 65 > this.x
+    &&
+    player.y < this.y + 60 &&
+    60 + player.y > this.y) {
     player.reset();
   }
 
