@@ -32,9 +32,7 @@ Enemy.prototype.update = function (dt) {
     player.x + 37 > this.x &&
     player.y < this.y + 25 &&
     30 + player.y > this.y) {
-    player.x = 200;
-    player.y = 799;
-    window.scrollTo(0, document.body.clientHeight);
+    player.reset();
   }
 
 };
@@ -55,20 +53,18 @@ var Player = function (x, y, speed) {
 };
 
 Player.prototype.update = function () {
-  if(this.y >799){
+  if (this.y > 799) {
     this.y = 799;
   }
-  if(this.x < 0){
+  if (this.x < 0) {
     this.x = 0;
   }
-  if(this.x > 400){
+  if (this.x > 400) {
     this.x = 400;
   }
   if (this.y <= -31) {
     alert('You WON!');
-    this.x = 200;
-    this.y= 799;
-    window.scrollTo(0, document.body.clientHeight);
+    this.reset();
   }
 };
 
@@ -87,10 +83,17 @@ Player.prototype.handleInput = function (keyPress) {
   if (keyPress == 'right')
     this.x += 100;
 }
+
+Player.prototype.reset = function () {
+  this.x = 200;
+  this.y = 799;
+  window.scrollTo(0, document.body.clientHeight);
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var player = new Player( 200, 799, 50);
+var player = new Player(200, 799, 50);
 var positions = [55, 137, 220, 220, 305, 387, 470, 553, 637];
 var allEnemies = [];
 
