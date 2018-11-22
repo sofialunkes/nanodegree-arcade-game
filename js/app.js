@@ -21,7 +21,7 @@ Enemy.prototype.update = function (dt) {
   // which will ensure the game runs at the same speed for
   // all computers.
 
-  if(this.x >= 500){
+  if (this.x >= 500) {
     this.x = -80;
   }
 
@@ -34,7 +34,8 @@ Enemy.prototype.update = function (dt) {
     30 + player.y > this.y) {
     player.x = 200;
     player.y = 799;
-}
+    window.scrollTo(0, document.body.clientHeight);
+  }
 
 };
 
@@ -54,7 +55,21 @@ var Player = function (x, y, speed) {
 };
 
 Player.prototype.update = function () {
-
+  if(this.y >799){
+    this.y = 799;
+  }
+  if(this.x < 0){
+    this.x = 0;
+  }
+  if(this.x > 400){
+    this.x = 400;
+  }
+  if (this.y <= -31) {
+    alert('You WON!');
+    this.x = 200;
+    this.y= 799;
+    window.scrollTo(0, document.body.clientHeight);
+  }
 };
 
 
@@ -75,19 +90,15 @@ Player.prototype.handleInput = function (keyPress) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var positions = [55,137,220,220,305, 387, 470, 553, 637];
+var player = new Player( 200, 799, 50);
+var positions = [55, 137, 220, 220, 305, 387, 470, 553, 637];
 var allEnemies = [];
 
-positions.forEach(function(pos){
-  var enemy = new Enemy(-80,pos, Math.random()*512);
+
+positions.forEach(function (pos) {
+  var enemy = new Enemy(-80, pos, Math.random() * 512);
   allEnemies.push(enemy);
 })
-
-//var allEnemies = [enemy1, enemy2, enemy3];
-var player = new Player(200, 799, 50);
-
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
